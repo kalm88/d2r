@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D2R Overlay Prototype</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="overlay" aria-label="Diablo II Resurrected overlay prototype">
+      <header class="overlay-title">D2R Overlay</header>
+
+      <section class="panel panel-left" data-panel data-resizable>
+        <h2>Run Notes</h2>
+        <textarea id="runNotes" placeholder="Track drops, route notes, and run times..."></textarea>
+      </section>
+
+      <section class="panel panel-right" data-panel data-resizable>
+        <h2>Resistances</h2>
+        <ul class="stats">
+          <li>Fire <span id="fireRes">75%</span></li>
+          <li>Cold <span id="coldRes">70%</span></li>
+          <li>Lightning <span id="lightningRes">60%</span></li>
+          <li>Poison <span id="poisonRes">45%</span></li>
+        </ul>
+      </section>
+
+      <section class="panel panel-bottom" data-panel data-resizable>
+        <h2>Quick Actions</h2>
+        <div class="actions">
+          <button data-action="note">+ Add Note</button>
+          <button id="timerToggle" data-action="timer">Start Timer</button>
+          <button data-action="clear">Clear Notes</button>
+        </div>
+        <p id="timerStatus">Timer: stopped</p>
+      </section>
+
+      <section class="panel panel-options" data-panel data-resizable>
+        <h2>Overlay Options</h2>
+        <div class="option-row">
+          <label for="timerHotkey">Timer hotkey</label>
+          <input id="timerHotkey" maxlength="1" value="t" aria-label="Timer hotkey" />
+        </div>
+        <p id="hotkeyStatus" class="small-text">Press <kbd>T</kbd> to start/stop timer.</p>
+
+        <fieldset class="loot-highlight" aria-label="Loot color accessibility options">
+          <legend>Loot Highlight (Accessibility)</legend>
+          <label><input type="checkbox" id="enableLootAssist" /> Enable loot assist</label>
+          <label><input type="checkbox" id="highlightRare" checked /> Emphasize Rare (yellow)</label>
+          <label><input type="checkbox" id="highlightSet" checked /> Emphasize Set (green)</label>
+          <label><input type="checkbox" id="highlightUnique" checked /> Emphasize Unique (gold)</label>
+        </fieldset>
+        <p id="lootAssistStatus" class="small-text">Loot assist is disabled. (Scaffold only: color-reading integration is planned.)</p>
+      </section>
+
+      <section class="panel panel-browser" data-panel data-resizable>
+        <h2>Community Browser</h2>
+        <div class="actions">
+          <button id="openDiablo2io" type="button">Open diablo2.io</button>
+          <button id="reloadDiablo2io" type="button">Reload</button>
+        </div>
+        <p id="browserStatus" class="small-text">Embedded browsing works only if diablo2.io allows iframe embedding. Use Open button for full interaction.</p>
+        <iframe
+          id="diablo2ioFrame"
+          title="diablo2.io community browser"
+          src="https://diablo2.io/"
+          loading="lazy"
+          referrerpolicy="no-referrer"
+        ></iframe>
+      </section>
+
+      <p class="hint">Hotkeys: <kbd>O</kbd> hide/show overlay • drag panels to move • resize from panel corners</p>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
